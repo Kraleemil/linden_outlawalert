@@ -29,37 +29,68 @@ end)
 
 local dispatchCodes = {
 
-    melee = { displayCode = '242', description = _U('melee'), isImportant = 0, recipientList = {'police', 'ambulance'},
+    melee = { displayCode = 'KODE 2', description = _U('melee'), isImportant = 0, recipientList = {'police'},
     blipSprite = 652, blipColour = 84, blipScale = 1.5 },
 
-    officerdown = {displayCode = '11-99', description = _U('officerdown'), isImportant = 1, recipientList = {'police', 'ambulance'},
+    officerdown = {displayCode = 'KODE 3', description = _U('officerdown'), isImportant = 1, recipientList = {'police', 'ambulance'},
     blipSprite = 653, blipColour = 84, blipScale = 1.5, infoM = 'fa-portrait'},
 
-    persondown = {displayCode = '10-53', description = _U('persondown'), isImportant = 0, recipientList = {'police', 'ambulance'},
+    officerdown2 = {displayCode = 'KODE 3', description = _U('officerdown2'), isImportant = 1, recipientList = {'police', 'ambulance'},
+    blipSprite = 653, blipColour = 84, blipScale = 1.7, infoM = 'fa-portrait'},
+
+    persondown = {displayCode = 'KODE 2', description = _U('persondown'), isImportant = 0, recipientList = {'police', 'ambulance'},
     blipSprite = 153, blipColour = 84, blipScale = 1.5, infoM = 'fa-portrait'},
 
-    autotheft = {displayCode = '503', description = _U('autotheft'), isImportant = 0, recipientList = {'police'},
+    autotheft = {displayCode = 'KODE 2', description = _U('autotheft'), isImportant = 0, recipientList = {'police'},
     blipSprite = 651, blipColour = 84, blipScale = 1.5, infoM = 'fa-car', infoM2 = 'fa-palette' },
 
-    speeding = {displayCode = '505', description = _U('speeding'), isImportant = 0, recipientList = {'police'},
+    speeding = {displayCode = 'KODE 1', description = _U('speeding'), isImportant = 0, recipientList = {'police'},
     blipSprite = 650, blipColour = 84, blipScale = 1.5, infoM = 'fa-car', infoM2 = 'fa-palette' },
 
-    shooting = { displayCode = '10-71', description = _U('shooting'), isImportant = 0, recipientList = {'police', 'ambulance'},
+    shooting = { displayCode = 'KODE 3', description = _U('shooting'), isImportant = 0, recipientList = {'police', 'ambulance'},
     blipSprite = 648, blipColour = 84, blipScale = 1.5 },
 
-    driveby = { displayCode = '10-71b', description = _U('driveby'), isImportant = 0, recipientList = {'police', 'ambulance'},
+    driveby = { displayCode = 'KODE 3', description = _U('driveby'), isImportant = 0, recipientList = {'police', 'ambulance'},
     blipSprite = 649, blipColour = 84, blipScale = 1.5, infoM = 'fa-car', infoM2 = 'fa-palette' },
 }
 
 
 --[[ Example custom alert
-RegisterCommand('testvangelico', function(playerId, args, rawCommand)
-    local data = {displayCode = '211', description = 'Robbery', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Vangelico Jewelry Store'}
-    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(-633.9, -241.7, 38.1)}
+
+RegisterCommand('Vangelico-robbery', function(playerId, args, rawCommand)
+    local data = {displayCode = 'KODE 3', description = 'Røveri', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Vangelico Smykker Butik'}
+    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(-628.27172851562, -235.14242553711, 38.057056427002)}
+    TriggerEvent('wf-alerts:svNotify', dispatchData)
+end, false)
+ --]]
+--[[ Example custom alert 
+RegisterCommand('Bank-midt-by', function(playerId, args, rawCommand)
+    local data = {displayCode = 'KODE 3', description = 'Røveri', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Bank Røveri Midt By Bank'}
+    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(150.33166503906, -1038.7174072266, 29.377780914307)}
     TriggerEvent('wf-alerts:svNotify', dispatchData)
 end, false)
 --]]
-
+--[[ Example custom alert 
+RegisterCommand('Bank-vest-kyst', function(playerId, args, rawCommand)
+    local data = {displayCode = 'KODE 3', description = 'Røveri', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Bank Røveri Vest Kyst Bank'}
+    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(-2964.73828125, 482.93658447266, 15.706809043884)}
+    TriggerEvent('wf-alerts:svNotify', dispatchData)
+end, false)
+--]]
+--[[ Example custom alert 
+RegisterCommand('Bank-hovede', function(playerId, args, rawCommand)
+    local data = {displayCode = 'KODE 3', description = 'Røveri', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Bank Røveri Hovede Banken'}
+    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(233.49534606934, 215.64181518555, 106.2866897583)}
+    TriggerEvent('wf-alerts:svNotify', dispatchData)
+end, false)
+--]]
+--[[ Example custom alert 
+RegisterCommand('Bank-peleto', function(playerId, args, rawCommand)
+    local data = {displayCode = 'KODE 3', description = 'Røveri', isImportant = 0, recipientList = {'police'}, length = '10000', infoM = 'fa-info-circle', info = 'Bank Røveri Peleto Bank'}
+    local dispatchData = {dispatchData = data, caller = 'Alarm', coords = vector3(-110.30471038818, 6463.0869140625, 31.626705169678)}
+    TriggerEvent('wf-alerts:svNotify', dispatchData)
+end, false)
+--]]
 
 RegisterServerEvent('wf-alerts:svNotify')
 AddEventHandler('wf-alerts:svNotify', function(pData)
@@ -100,7 +131,7 @@ RegisterServerEvent('wf-alerts:svNotify911')
 AddEventHandler('wf-alerts:svNotify911', function(message, caller, coords)
     if message ~= nil then
         local pData = {}
-        pData.displayCode = '911'
+        pData.displayCode = '112'
         if caller == _U('caller_unknown') then pData.dispatchMessage = _U('unknown_caller') else
         pData.dispatchMessage = _U('call_from') .. caller end
         pData.recipientList = {'police', 'ambulance'}

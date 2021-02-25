@@ -140,6 +140,13 @@
     animation: myfirst 5s linear 0s infinite alternate;
 }
 
+.officer-down2 {
+    box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;
+    background: rgba(26, 68, 116, 0.9);
+    animation: myfirst 5s linear 0s infinite alternate;
+}
+
+
 @keyframes myfirst {
     0%   {background:rgba(146, 36, 36, 0.9); left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
     15%  {background:rgba(26, 68, 116, 0.9); left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
@@ -149,4 +156,15 @@
     75%  {background:rgba(26, 68, 116, 0.9); left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
     90% {background:rgba(146, 36, 36, 0.9); left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
     100%  {background:rgba(26, 68, 116, 0.9); left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
+  }
+
+@keyframes myfirst {
+    0%   {background:#8b2424e6; left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
+    15%  {background:#922424e6; left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
+    30% {background:#8b2424e6; left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
+    45%  {background:#922424e6; left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
+    60% {background:#8b2424e6; left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
+    75%  {background:#922424e6; left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
+    90% {background:#8b2424e6; left:0px; top:0px; box-shadow: -3px 0px 0px 0px rgba(192, 62, 62, 0.9) inset;}
+    100%  {background:#922424e6; left:200px; top:200px; box-shadow: -3px 0px 0px 0px rgba(47, 110, 182, 0.9) inset;}
   }

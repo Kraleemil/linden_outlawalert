@@ -26,6 +26,7 @@ $('document').ready(function() {
        var $notification = $(document.createElement('div'));
        if (data.info.isImportant === 1) {
             $notification.addClass('notification').addClass('officer-down');
+            $notification.addClass('notification').addClass('officer-down2');
        } else {
             $notification.addClass('notification').addClass(data.job);
        }

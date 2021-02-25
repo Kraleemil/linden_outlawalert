@@ -47,7 +47,6 @@ function GetAllPeds()
 end
 
 function zoneChance(type, zoneMod, street)
-    if not Config.DebugChance then return true end
     if not street then street = currentStreetName end
     playerCoords = GetEntityCoords(PlayerPedId())
     local zone, sendit = GetLabelText(GetNameOfZone(playerCoords.x, playerCoords.y, playerCoords.z)), false
@@ -66,6 +65,7 @@ function zoneChance(type, zoneMod, street)
     zoneMod = zoneMod / (nearbyPeds / 3)
     zoneMod = (math.ceil(zoneMod+0.5))
     local sum = math.random(1, zoneMod)
+    if Config.DebugChance then sum = 1 end
     local chance = string.format('%.2f',(1 / zoneMod) * 100)..'%'
 
     if sum > 1 then
@@ -93,7 +93,7 @@ function vehicleData(vehicle)
         elseif Config.Colours[tostring(vehicleColour2)] then
             vehicleColour = Config.Colours[tostring(vehicleColour2)]
         else
-            vehicleColour = "Unknown"
+            vehicleColour = "Ukendt"
         end
     end
     local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
@@ -114,8 +114,8 @@ function createBlip(data)
         if data.sprite then sprite = data.sprite end
         if data.colour then colour = data.colour end
         if data.scale then scale = data.scale end
-        local entId = NetworkGetEntityFromNetworkId(data.netId)
-        if data.netId and entId > 0 then
+        if data.netId then
+            local entId = NetworkGetEntityFromNetworkId(data.netId)
             blip = AddBlipForEntity(entId)
             SetBlipSprite(blip, sprite)
             SetBlipHighDetail(blip, true)
@@ -132,7 +132,6 @@ function createBlip(data)
             Citizen.Wait(0)
             blip = AddBlipForCoord(GetEntityCoords(entId))
         else
-            data.netId = nil
             blip = AddBlipForCoord(data.coords.x, data.coords.y, data.coords.z)
         end
         SetBlipSprite(blip, sprite)
@@ -146,7 +145,7 @@ function createBlip(data)
         AddTextComponentString(data.displayCode..' - '..data.dispatchMessage)
         EndTextCommandSetBlipName(blip)
         while alpha ~= 0 do
-            if data.netId then Citizen.Wait((data.length / 1000) * 5) else Citizen.Wait((data.length / 1000) * 20) end
+            if data.netid then Citizen.Wait((data.length / 1000) * 5) else Citizen.Wait((data.length / 1000) * 20) end
             alpha = alpha - 1
             SetBlipAlpha(blip, alpha)
             if alpha == 0 then
@@ -273,6 +272,7 @@ AddEventHandler('esx:onPlayerDeath', function(reason)
     local netId = NetworkGetNetworkIdFromEntity(playerPed)
     local name = ('%s %s'):format(firstname, lastname)
     local title = ('%s %s'):format(rank, lastname)
+    local title2 = ('%s %s'):format(firstname, lastname)
     refreshPlayerWhitelisted()
     if isPlayerWhitelisted then
         Citizen.Wait(2000)
@@ -285,7 +285,20 @@ AddEventHandler('esx:onPlayerDeath', function(reason)
     end
 end)
 
+RegisterCommand('p', function(reason)
+    local netId = NetworkGetNetworkIdFromEntity(playerPed)
+    local name = ('%s %s'):format(firstname, lastname)
+    local title = ('%s %s'):format(rank, lastname)
+    local title2 = ('%s %s'):format(firstname, lastname)
+    refreshPlayerWhitelisted()
+    if isPlayerWhitelisted then
+        Citizen.Wait(200)
+        data = {dispatchCode = 'officerdown2', caller = name, coords = playerCoords, netId = netId, info = title2, length = 10000}
+        TriggerServerEvent('wf-alerts:svNotify', data)
+    end
+end)
 
+--[[
 RegisterCommand('911', function(playerId, args, rawCommand)
     args = table.concat(args, ' ')
     local caller
@@ -301,3 +314,4 @@ RegisterCommand('911a', function(playerId, args, rawCommand)
         TriggerServerEvent('wf-alerts:svNotify911', args, _U('caller_unknown'), playerCoords)
     end
 end, false)
+--]]
